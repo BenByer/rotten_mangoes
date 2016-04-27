@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   def index
+    puts params
     @movies = Movie.all
   end
 

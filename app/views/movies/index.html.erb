@@ -1,5 +1,15 @@
-<h1>Rotten Mangoes</h1>
+<h1>Rotten Mangoes index</h1>
     <%= link_to "Submit a movie!", new_movie_path %>
+    <hr>
+    <%= form_tag("/", method: "get") do %>
+      <%= label_tag(:title, "Search for a movie by:    Movie title:") %>
+      <%= text_field_tag(:title) %>
+      <%= label_tag(:director, "Director:") %>
+      <%= text_field_tag(:director) %>
+      <%= label_tag(:time_id, "Running time:") %>
+      <%= select_tag(:time_id, options_for_select([['', 1], ['Under 90 minutes', 2], ['Between 90 and 120 minutes', 3], ['Over 120 minutes', 4]])) %>
+      <%= submit_tag("Submit") %>
+    <% end %>
     <hr>
     <% @movies.each do |movie| %>
       <%= link_to image_tag(movie.image), movie_path(movie) %>
