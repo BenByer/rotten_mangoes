@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
   def index
-    puts params
     movies = Movie.all
     if params[:commit] == "Submit"
       if params.has_key? :title
@@ -9,7 +8,8 @@ class MoviesController < ApplicationController
       if params.has_key? :director
         movies = movies.by_directors(params[:director])
       end
-      run_time = params[:run_time]  # Mason said this was better than using params[:run_time] in each if clause
+      
+      run_time = params[:run_time]  # Mason said this was better than using params[:run_time] in each if clause      
       if run_time == '1'
         movies = movies.where("runtime_in_minutes < 90")
       elsif run_time == '2'
