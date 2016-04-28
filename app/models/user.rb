@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :reviews
+  has_many :reviews, dependent: :delete_all
 
   has_secure_password
  
@@ -10,5 +10,9 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{firstname} #{lastname}"
+  end
+
+  def delete_reviews
+
   end
 end
