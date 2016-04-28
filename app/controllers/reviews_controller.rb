@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   def index # used to view all reviews if desired, (Khirram)
     @movie = Movie.find_by(id: parama[:id]) # nil-able
     @reviews = Review.order(created_at: :desc)
-    @reviews =@reviews.where(movie_id: @movie.id) if @movie
+    @reviews = @reviews.where(movie_id: @movie.id) if @movie
   end
 
   def new

@@ -16,9 +16,9 @@ class Admin::UsersController < UsersController
     puts "**********delete me"
     @user = User.find(params[:id])
     mail = UserMailer.deleted_email(@user)
-    puts mail
+    puts "**** #{mail} ****"
     mail.deliver
-#    @user.destroy
+    @user.destroy
 
     redirect_to admin_user_path
   end

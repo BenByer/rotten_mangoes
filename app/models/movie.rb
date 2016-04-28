@@ -13,6 +13,9 @@ class Movie < ActiveRecord::Base
 
   scope :by_titles, -> (title) { where("title LIKE ?", "%#{title}%") }
   scope :by_directors, -> (director) { where("director LIKE ?", "%#{director}%") }
+#puts "** #{table_name}"
+  #scope :blas -> (range) { where("runtime_in_minutes")}
+  #scope :by_whatever, -> (column_name, director) { where("? LIKE ?", column_name, "%#{director}%") }
 
   #scope :from_stuff, -> (title) { where("? LIKE ?", table, "%#{thing}%") }
 

@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
     if params[:commit] == "Submit"
       if params.has_key? :title
         movies = movies.by_titles(params[:title])
+        #movies = movies.by_whatever("title", params[:title])
       end
       if params.has_key? :director
         movies = movies.by_directors(params[:director])

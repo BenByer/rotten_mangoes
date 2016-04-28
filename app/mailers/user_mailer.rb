@@ -8,10 +8,9 @@ class UserMailer < ApplicationMailer
 
   def deleted_email(user)
     @user = user
-    @url  = 'http://example.com/deleted'
-    mail(to: @user.email, subject: 'You have been erased from existence',
-      template_path: 'app/views/user_mailer',
-      template_name: 'deleted_email.html.erb')
+    @url  = 'localhost:3000'
+    puts "UserMailer @user #{@user}"
+    mail(to: @user.email, subject: 'You have been erased from existence')
   end
 
 end
