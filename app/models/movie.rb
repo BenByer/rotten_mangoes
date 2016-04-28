@@ -10,6 +10,14 @@ class Movie < ActiveRecord::Base
   validate :release_date_is_in_the_past
 
   mount_uploader :image, ImageUploader
+
+  scope :by_titles, -> (title) { where("title LIKE ?", "%#{title}%") }
+  scope :by_directors, -> (director) { where("director LIKE ?", "%#{director}%") }
+
+  #scope :from_stuff, -> (title) { where("? LIKE ?", table, "%#{thing}%") }
+
+ # scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
+ # scope :fresh, -> { where('age < ?', 25) }
   def review_average
     begin
       reviews.sum(:rating_out_of_ten) / reviews.size

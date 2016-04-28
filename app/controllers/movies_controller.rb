@@ -1,21 +1,24 @@
 class MoviesController < ApplicationController
   def index
-    some_movies = Movie.all
-    if params.has_key? :title
-      some_movies = some_movies.where("title LIKE '%#{params[:title]}%'")
+    puts params
+    movies = Movie.all
+    if params[:commit] == "Submit"
+      if params.has_key? :title
+        movies = movies.by_titles(params[:title])
+      end
+      if params.has_key? :director
+        movies = movies.by_directors(params[:director])
+      end
+      run_time = params[:run_time]  # Mason said this was better than using params[:run_time] in each if clause
+      if run_time == '1'
+        movies = movies.where("runtime_in_minutes < 90")
+      elsif run_time == '2'
+        movies = movies.where("runtime_in_minutes BETWEEN 90 AND 120")
+      elsif run_time == '3'
+        movies = movies.where("runtime_in_minutes > 120")
+      end  
     end
-    if params.has_key? :director
-      some_movies = some_movies.where("director LIKE '%#{params[:director]}%'")
-    end
-    run_time = params[:run_time]
-    if run_time == '1'
-      some_movies = some_movies.where("runtime_in_minutes < 90")
-    elsif run_time == '2'
-      some_movies = some_movies.where("runtime_in_minutes BETWEEN 90 AND 120")
-    elsif run_time == '3'
-      some_movies = some_movies.where("runtime_in_minutes > 120")
-    end  
-    @movies = some_movies
+    @movies = movies
   end
 
   def show

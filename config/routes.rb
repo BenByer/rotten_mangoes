@@ -8,8 +8,13 @@ RottenMangoes::Application.routes.draw do
   resources :movies do
     resources :reviews, only: [:new, :create]
   end
+  resources :reviews, only: [:index]
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
+
+    # Apr 28 lesson stuff
+    # resources :profiles, only: [:show]
+    # resource :profile, only: [:edit, :update, :show]
 
   namespace :admin do
     resources :users
