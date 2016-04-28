@@ -12,7 +12,4 @@ class User < ActiveRecord::Base
     "#{firstname} #{lastname}"
   end
 
-  def delete_reviews
-
-  end
 end

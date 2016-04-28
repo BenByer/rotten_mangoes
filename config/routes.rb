@@ -1,6 +1,8 @@
 RottenMangoes::Application.routes.draw do
   
 
+  resources :useremails
+
   get "reviews/new"
   get "reviews/create"
   resources :movies do
