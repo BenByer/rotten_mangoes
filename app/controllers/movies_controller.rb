@@ -30,10 +30,12 @@ class MoviesController < ApplicationController
   end
 
   def new
+    puts "&&new_movie_path(@movie)"
     @movie = Movie.new
   end
 
   def edit
+    puts "&&edit_movie_path(@movie)"
     @movie = Movie.find(params[:id])
   end
 

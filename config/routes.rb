@@ -17,7 +17,11 @@ RottenMangoes::Application.routes.draw do
     # resource :profile, only: [:edit, :update, :show]
 
   namespace :admin do
-    resources :users
+    resources :users #do
+      # post 'impersonate', on: :member
+      # post 'unimpersonate', on: :collection
+    #  resource :impersonation, only: [:create, :destroy]
+    #end
   end
 
   root to: 'movies#index'

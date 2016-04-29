@@ -15,14 +15,7 @@ class Movie < ActiveRecord::Base
   # scope :by_directors, -> (director) { where("director LIKE ?", "%#{director}%") }
 
   scope :search, -> (title) { where("title LIKE ? OR director LIKE ?", "%#{title}%", "%#{title}%") }
-#puts "** #{table_name}"
-  #scope :blas -> (range) { where("runtime_in_minutes")}
-  #scope :by_whatever, -> (column_name, director) { where("? LIKE ?", column_name, "%#{director}%") }
 
-  #scope :from_stuff, -> (title) { where("? LIKE ?", table, "%#{thing}%") }
-
- # scope :starts_with, -> (name) { where("name like ?", "#{name}%")}
- # scope :fresh, -> { where('age < ?', 25) }
   def review_average
     begin
       reviews.sum(:rating_out_of_ten) / reviews.size
