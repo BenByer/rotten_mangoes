@@ -6,7 +6,8 @@
   <%= puts "Email:  #{user.email}" %>
   Email: <%= user.email %>
   <br>
-  Admin: <%= user.is_admin %>
+  Admin: <%= user.admin %>
   <br>
-  <%= link_to "Delete", admin_user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete this user?"} %> | <%= link_to "Edit", edit_admin_user_path(user) %>
+  <%= link_to "Delete", admin_user_path(user), method: :delete, data: {confirm: "Are you sure you want to delete this user?"} %> | <%= link_to "Edit", edit_admin_user_path(user) %> | 
+  <%= link_to "Impersonate", impersonate_admin_user_path(user), method: :post %>
 <hr>

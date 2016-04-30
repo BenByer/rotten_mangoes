@@ -3,9 +3,11 @@
   <small>
     <% if current_user %>
       Signed in as <%= current_user.email %> (<%= link_to "Log out", session_path("current"), method: :delete %>) 
-        <% if current_user.is_admin %>
-          (<%= link_to "Admin", "admin/users/show" %>)
+
+        <% if current_user.admin? %>
+          You are an Admin | (<%= link_to "Admin", "admin/users/show" %>)
         <% end %>
+
     <% else %>
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>

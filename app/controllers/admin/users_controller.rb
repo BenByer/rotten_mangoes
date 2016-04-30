@@ -1,4 +1,7 @@
 class Admin::UsersController < UsersController
+
+  before_filter :ensure_is_admin
+
   def index
 
   end
@@ -71,29 +74,30 @@ class Admin::UsersController < UsersController
 
   def impersonate
     @user = User.find(params[:id])
-    session[:actual_user_id] = session[:user_id]
+    session[:actual_user_id] = current_user.id
     session[:user_id] = @user.id
-    redirect_to [:admin, :users], notice: "Switched to other"
-  #  raise session[:user_id].inspect
+    redirect_to [:admin, :users], notice: "Switched to user: #{@user.full_name}"
   end
 
-  def ensure_admin_only
+  private 
+
+  def ensure_is_admin
     redirect_to :root unless admin?
   end
 
-  # def admin?
-  #   #current_user && current_user.is_admin?
-  #   current_user.try :admin? || impersonating?
-  # end
+  def impersonating?
+    actual_user.try :admin?
+  end
+  
+  def admin?
+    current_user.try :admin? || impersonating?
+  end 
 
-  # def impersonating?
-  #   actual_user.try(:admin)?
-  # end
+  def actual_user
+    User.find(session[:actual_user_id]) if session[:actual_user_id].present?
+  end
 
-  # def actual_user
-  #   User.find(session[:actual_user_id]) if session[:actual_user].present?
-  # end
+  helper_method :admin?, :actual_user, :impersonating?
 
-  #helper_method :admin?, :actual_user, :impersonating?
 
 end
