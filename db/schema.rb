@@ -18,11 +18,10 @@ ActiveRecord::Schema.define(version: 20160428010342) do
     t.string   "director"
     t.integer  "runtime_in_minutes"
     t.text     "description"
-    t.string   "poster_image_url"
+    t.string   "image"
     t.datetime "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
   end
 
   create_table "reviews", force: true do |t|
